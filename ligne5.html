@@ -55,7 +55,7 @@
         // Fonction pour charger une ligne aléatoire à partir du fichier texte
         async function loadRandomLine() {
             try {
-                const response = await fetch('spotify.txt');
+                const response = await fetch('steam.txt');
                 if (!response.ok) {
                     throw new Error(`Network response was not ok: ${response.statusText}`);
                 }
