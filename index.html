@@ -89,10 +89,7 @@
         <button onclick="fetchFirstLine('netflix.txt', 'ligne4.html', 'netflixClick')">Générer</button>
     </div>
 
-    <div class="container">
-        <button onclick="showIPAddress()">Afficher mon IP</button>
-    </div>
-
+    
     <script>
         function fetchFirstLine(filename, redirectPage, cookieName) {
             console.log('fetchFirstLine function called for file:', filename); // Debugging
@@ -141,7 +138,7 @@
         fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
-                if (data.ip === '192.168.1.9') {
+                if (data.ip === '212.239.180.38') {
                     const navbar = document.getElementById('navbar');
                     const adminLink = document.createElement('a');
                     adminLink.href = 'admin.html';
