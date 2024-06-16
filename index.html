@@ -50,6 +50,7 @@
             padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
+            margin: 10px;
         }
         .container button:hover {
             background-color: #3700b3;
@@ -88,6 +89,10 @@
         <button onclick="fetchFirstLine('netflix.txt', 'ligne4.html', 'netflixClick')">Générer</button>
     </div>
 
+    <div class="container">
+        <button onclick="showIPAddress()">Afficher mon IP</button>
+    </div>
+
     <script>
         function fetchFirstLine(filename, redirectPage, cookieName) {
             console.log('fetchFirstLine function called for file:', filename); // Debugging
@@ -123,12 +128,17 @@
                 .catch(error => console.error('Fetch error:', error));
         }
 
-        // Vérifier l'adresse IP de l'utilisateur
-        fetch('log_ip.php') // Appel au script PHP pour enregistrer l'adresse IP
-            .then(() => {
-                // Vérifier l'adresse IP via une API externe
-                return fetch('https://api.ipify.org?format=json');
-            })
+        function showIPAddress() {
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    alert('Votre adresse IP est : ' + data.ip);
+                })
+                .catch(error => console.error('Erreur lors de la récupération de l\'adresse IP :', error));
+        }
+
+        // Vérifier l'adresse IP de l'utilisateur pour afficher le lien Admin
+        fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
                 if (data.ip === '192.168.1.9') {
@@ -139,8 +149,9 @@
                     navbar.appendChild(adminLink);
                 }
             })
-            .catch(error => console.error('Error fetching IP address:', error));
+            .catch(error => console.error('Erreur lors de la récupération de l\'adresse IP :', error));
     </script>
 </body>
 </html>
+
 
