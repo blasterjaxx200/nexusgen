@@ -127,26 +127,9 @@
                 .catch(error => console.error('Fetch error:', error));
         }
 
-        function showIPAddress() {
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    alert('Votre adresse IP est : ' + data.ip);
-                })
-                .catch(error => console.error('Erreur lors de la récupération de l\'adresse IP :', error));
-        }
+    
 
-        // Vérifier l'adresse IP de l'utilisateur pour afficher le lien Admin
-        fetch('https://api.ipify.org?format=json')
-            .then(response => response.json())
-            .then(data => {
-                if (data.ip === '212.239.180.38') {
-                    const navbar = document.getElementById('navbar');
-                    const adminLink = document.createElement('a');
-                    adminLink.href = 'admin.html';
-                    adminLink.textContent = 'Admin';
-                    navbar.appendChild(adminLink);
-                }
+        
             })
             .catch(error => console.error('Erreur lors de la récupération de l\'adresse IP :', error));
     </script>
