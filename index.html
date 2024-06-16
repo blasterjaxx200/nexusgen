@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Gen</title>
+    <title>nexus gen</title>
     <style>
         body {
             background-color: #121212;
@@ -57,7 +57,7 @@
     </style>
 </head>
 <body>
-    <div class="navbar">
+    <div class="navbar" id="navbar">
         <a href="index.html">Home</a>
         <a href="avis.html">Avis</a>
         <a href="leak.html">Leak</a>
@@ -81,6 +81,7 @@
         <h2>Crunchyroll</h2>
         <button onclick="fetchFirstLine('crunchyroll.txt', 'ligne3.html', 'crunchyrollClick')">Générer</button>
     </div>
+    
     <div class="container">
         <img src="netflix.jpg" alt="Image">
         <h2>Netflix</h2>
@@ -88,20 +89,6 @@
     </div>
 
     <script>
-        // Ajout du lien Admin si l'adresse IP est celle spécifiée
-        fetch('https://api.ipify.org?format=json')
-            .then(response => response.json())
-            .then(data => {
-                if (data.ip === '192.168.1.9') {
-                    const navbar = document.querySelector('.navbar');
-                    const adminLink = document.createElement('a');
-                    adminLink.href = 'admin.html';
-                    adminLink.textContent = 'Admin';
-                    navbar.appendChild(adminLink);
-                }
-            })
-            .catch(error => console.error('Erreur de récupération de l\'adresse IP:', error));
-
         function fetchFirstLine(filename, redirectPage, cookieName) {
             console.log('fetchFirstLine function called for file:', filename); // Debugging
 
@@ -135,7 +122,22 @@
                 })
                 .catch(error => console.error('Fetch error:', error));
         }
+
+        // Vérifier l'adresse IP de l'utilisateur
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                if (data.ip === '192.168.1.9') {
+                    const navbar = document.getElementById('navbar');
+                    const adminLink = document.createElement('a');
+                    adminLink.href = 'admin.html';
+                    adminLink.textContent = 'Admin';
+                    navbar.appendChild(adminLink);
+                }
+            })
+            .catch(error => console.error('Error fetching IP address:', error));
     </script>
 </body>
 </html>
+
 
