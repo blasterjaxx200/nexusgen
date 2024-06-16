@@ -92,7 +92,7 @@
         fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
-                if (data.ip === '136.45.85.6') {
+                if (data.ip === '192.168.1.9') {
                     const navbar = document.querySelector('.navbar');
                     const adminLink = document.createElement('a');
                     adminLink.href = 'admin.html';
