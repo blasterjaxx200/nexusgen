@@ -124,7 +124,11 @@
         }
 
         // Vérifier l'adresse IP de l'utilisateur
-        fetch('https://api.ipify.org?format=json')
+        fetch('log_ip.php') // Appel au script PHP pour enregistrer l'adresse IP
+            .then(() => {
+                // Vérifier l'adresse IP via une API externe
+                return fetch('https://api.ipify.org?format=json');
+            })
             .then(response => response.json())
             .then(data => {
                 if (data.ip === '192.168.1.9') {
@@ -139,5 +143,4 @@
     </script>
 </body>
 </html>
-
 
