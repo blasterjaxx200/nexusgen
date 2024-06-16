@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avis</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            margin: 100px auto 0 auto;
+            width: 300px;
+        }
+        .review {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            margin: 20px 0;
+        }
+        .review h3 {
+            margin: 0 0 10px;
+        }
+        .review p {
+            margin: 0 0 20px;
+        }
+        .review button {
+            background-color: #6200ea;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .review button:hover {
+            background-color: #3700b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="avis.html">Avis</a>
+        <a href="leak.html">leak</a>
+        
+        <a href="notification.html">notifications</a>
+    </div>
+
+    <div class="container">
+        <h2>notifications</h2>
+        
+        <div class="review">
+            <h3>restock !</h3>
+            <p>restock de 200 compte spotify</p>
+       
+           
+        </div>
+        <div class="review">
+            <h3>restock !</h3>
+            <p>restock de 35 compte disney+</p>
+       
+           
+        </div>
+    </div>
+
+    <script>
+        // Vérifiez si l'utilisateur a déjà liké
+        function hasLiked() {
+            return localStorage.getItem('likedReview') === 'true';
+        }
+
+        // Mettez à jour l'état de like
+        function setLiked(value) {
+            localStorage.setItem('likedReview', value);
+        }
+
+        // Sauvegarder et récupérer le compteur de likes dans le localStorage
+        function getLikeCount() {
+            return parseInt(localStorage.getItem('likeCount')) || 0;
+        }
+
+        function setLikeCount(value) {
+            localStorage.setItem('likeCount', value);
+        }
+
+        // Incrémente le compteur de likes si l'utilisateur n'a pas déjà liké
+        function likeReview() {
+            if (hasLiked()) {
+                alert('Vous avez déjà liké cet avis.');
+            } else {
+                let likeCount = getLikeCount();
+                likeCount++;
+                document.getElementById('likeCount').textContent = likeCount;
+                setLikeCount(likeCount);
+                setLiked('true');
+                alert('Merci pour votre like !');
+            }
+        }
+
+        // Initialiser le compteur de likes au chargement de la page
+        document.addEventListener('DOMContentLoaded', () => {
+            let likeCount = getLikeCount();
+            document.getElementById('likeCount').textContent = likeCount;
+        });
+    </script>
+</body>
+</html>
