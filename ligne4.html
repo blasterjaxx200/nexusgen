@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ligne de texte aléatoire</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 300px;
+        }
+        .container button {
+            background-color: #6200ea;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        .container button:hover {
+            background-color: #3700b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Compte généré</h2>
+        <p id="line"></p>
+        <button onclick="copyText()">Copier</button>
+        <button onclick="goBack()">Retour</button>
+    </div>
+
+    <script>
+        // Fonction pour obtenir le paramètre de l'URL
+        function getQueryParam(param) {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Fonction pour charger une ligne aléatoire à partir du fichier texte
+        async function loadRandomLine() {
+            try {
+                const response = await fetch('netflix.txt');
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                const text = await response.text();
+                const lines = text.split('\n').filter(line => line.trim() !== ''); // Filtrer les lignes vides
+
+                if (lines.length === 0) {
+                    throw new Error('Le fichier ne contient pas de lignes valides.');
+                }
+
+                const randomIndex = Math.floor(Math.random() * lines.length);
+                const randomLine = lines[randomIndex];
+                
+                return randomLine;
+            } catch (error) {
+                console.error('Erreur de chargement de la ligne aléatoire:', error);
+                return 'Erreur de chargement';
+            }
+        }
+
+        // Affiche une ligne aléatoire lorsque la page est chargée
+        document.addEventListener('DOMContentLoaded', async () => {
+            let randomLine = await loadRandomLine();
+            document.getElementById('line').textContent = randomLine;
+        });
+
+        // Fonction pour copier le texte
+        function copyText() {
+            let text = document.getElementById('line').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Texte copié dans le presse-papier');
+            }).catch(err => {
+                console.error('Erreur de copie:', err);
+            });
+        }
+
+        // Fonction pour revenir à la page principale
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
