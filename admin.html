@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Modifier le Cooldown</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 300px;
+        }
+        .container button {
+            background-color: #6200ea;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 0;
+            display: block;
+            width: 100%;
+        }
+        .container button:hover {
+            background-color: #3700b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Modifier le Cooldown</h2>
+        <button onclick="updateCooldown(600)">10 Minutes</button>
+        <button onclick="updateCooldown(1800)">30 Minutes</button>
+        <button onclick="updateCooldown(3600)">1 Heure</button>
+        <button onclick="updateCooldown(7200)">2 Heures</button>
+        <button onclick="updateCooldown(18000)">5 Heures</button>
+        <button onclick="disableCooldown()">Désactiver Cooldown</button>
+    </div>
+
+    <script>
+        function updateCooldown(seconds) {
+            fetch('updateCooldown.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'cooldown=' + encodeURIComponent(seconds)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                alert('Cooldown mis à jour avec succès');
+            })
+            .catch(error => console.error('Erreur:', error));
+        }
+
+        function disableCooldown() {
+            fetch('disableCooldown.php')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                alert('Cooldown désactivé avec succès');
+            })
+            .catch(error => console.error('Erreur:', error));
+        }
+    </script>
+</body>
+</html>
