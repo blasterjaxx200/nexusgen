@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nexus gen</title>
+    <title>Nexus Gen</title>
     <style>
         body {
             background-color: #121212;
@@ -83,11 +83,25 @@
     </div>
     <div class="container">
         <img src="netflix.jpg" alt="Image">
-        <h2>netflix</h2>
+        <h2>Netflix</h2>
         <button onclick="fetchFirstLine('netflix.txt', 'ligne4.html', 'netflixClick')">Générer</button>
     </div>
 
     <script>
+        // Ajout du lien Admin si l'adresse IP est celle spécifiée
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                if (data.ip === '136.45.85.6') {
+                    const navbar = document.querySelector('.navbar');
+                    const adminLink = document.createElement('a');
+                    adminLink.href = 'admin.html';
+                    adminLink.textContent = 'Admin';
+                    navbar.appendChild(adminLink);
+                }
+            })
+            .catch(error => console.error('Erreur de récupération de l\'adresse IP:', error));
+
         function fetchFirstLine(filename, redirectPage, cookieName) {
             console.log('fetchFirstLine function called for file:', filename); // Debugging
 
