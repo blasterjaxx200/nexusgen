@@ -61,8 +61,7 @@
         <a href="index.html">Home</a>
         <a href="avis.html">Avis</a>
         <a href="leak.html">Leak</a>
-        
-        <a href="notification.html">notifications</a>
+        <a href="notification.html">Notifications</a>
     </div>
 
     <div class="container">
@@ -73,13 +72,14 @@
 
     <div class="container">
         <img src="disney+.jpg" alt="Image">
-        <h2>disney+</h2>
-        <button onclick="fetchFirstLine('disney+.txt', 'ligne2.html', 'anotherClick')">Générer</button>
+        <h2>Disney+</h2>
+        <button onclick="fetchFirstLine('disney+.txt', 'ligne2.html', 'disneyPlusClick')">Générer</button>
     </div>
-     <div class="container">
+    
+    <div class="container">
         <img src="crunchyroll.jpg" alt="Image">
-        <h2>crunchyroll</h2>
-        <button onclick="fetchFirstLine('crunchyroll.txt', 'ligne3.html', 'spotifyClick')">Générer</button>
+        <h2>Crunchyroll</h2>
+        <button onclick="fetchFirstLine('crunchyroll.txt', 'ligne3.html', 'crunchyrollClick')">Générer</button>
     </div>
 
     <script>
@@ -87,7 +87,7 @@
             console.log('fetchFirstLine function called for file:', filename); // Debugging
 
             // Vérifier si le cookie de limitation est présent
-            if (document.cookie.includes(cookieName)) {
+            if (document.cookie.split(';').some((item) => item.trim().startsWith(`${cookieName}=`))) {
                 alert('Vous avez déjà généré un compte récemment. Réessayez dans une heure.');
                 return;
             }
@@ -119,3 +119,4 @@
     </script>
 </body>
 </html>
+
