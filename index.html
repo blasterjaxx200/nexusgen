@@ -3,40 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nexus gen</title>
+    <title>Cadre avec Image, Titre et Bouton</title>
     <style>
         body {
             background-color: #121212;
             color: #ffffff;
             font-family: Arial, sans-serif;
             margin: 0;
+            display: flex;
         }
         .navbar {
             background-color: #333;
-            overflow: hidden;
+            width: 80px;
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
+            padding-top: 20px;
+            transition: width 0.3s;
+        }
+        .navbar:hover {
+            width: 200px;
         }
         .navbar a {
-            float: left;
-            display: block;
             color: #f2f2f2;
-            text-align: center;
-            padding: 14px 20px;
             text-decoration: none;
+            text-align: center;
+            margin: 10px 0;
+            width: 100%;
+            transition: all 0.3s;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .navbar a .icon {
+            display: block;
+            margin: 0 auto;
+            width: 40px;
+            height: 40px;
         }
         .navbar a:hover {
             background-color: #ddd;
             color: black;
         }
-        .discord-link {
-            margin-left: auto; /* Place l'icône Discord à droite de la barre de navigation */
-            padding: 10px;
+        .navbar a span {
+            display: inline-block;
+            opacity: 0;
+            transition: opacity 0.3s;
+            vertical-align: middle;
+            margin-left: 10px;
         }
-        .discord-icon {
-            width: 30px; /* Ajustez la taille de l'icône selon vos besoins */
-            height: auto;
-            cursor: pointer;
+        .navbar:hover a span {
+            opacity: 1;
         }
         .container {
             background-color: #1e1e1e;
@@ -45,7 +62,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             text-align: center;
             width: 300px;
-            margin: 20px auto;
+            margin: 100px auto 20px auto;
         }
         .container img {
             width: 100%;
@@ -65,19 +82,38 @@
         .container button:hover {
             background-color: #3700b3;
         }
+        .discord-icon {
+            width: 30px; /* Ajustez la taille de l'icône selon vos besoins */
+            height: auto;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <a href="index.html">Home</a>
-        <a href="avis.html">Avis</a>
-        <a href="leak.html">Leak</a>
-        <a href="notification.html">Notifications</a>
-         <div class="nexus-link">
-            <a href="https://nexus-ia.netlify.app/" target="_blank">Nexus AI</a>
-        </div>
-        <a href="https://discord.gg/NDG7mtEh" target="_blank" class="discord-link">
+        <a href="index.html">
+            <img src="home-icon.jpg" alt="Home" class="icon">
+            <span>Home</span>
+        </a>
+        <a href="avis.html">
+            <img src="avis-icon.png" alt="Avis" class="icon">
+            <span>Avis</span>
+        </a>
+        <a href="leak.html">
+            <img src="leak-icon.png" alt="Leak" class="icon">
+            <span>Leak</span>
+        </a>
+        <a href="notification.html">
+            <img src="notification-icon.png" alt="Notifications" class="icon">
+            <span>Notifications</span>
+        </a>
+        <a href="https://nexus.ai" target="_blank">
+            <img src="nexus-icon.png" alt="Nexus AI" class="icon">
+            <span>Nexus AI</span>
+        </a>
+        <a href="https://discord.gg/VOTRE_CODE" target="_blank">
             <img src="discord-icon.png" alt="Discord" class="discord-icon">
+            <span>Discord</span>
         </a>
     </div>
 
@@ -103,13 +139,10 @@
         <h2>Netflix</h2>
         <button onclick="fetchFirstLine('netflix.txt', 'ligne4.html', 'netflixClick')">Générer</button>
     </div>
-     <div class="container">
-        <img src="steam.jpg" alt="Image">
-        <h2>steam</h2>
-        <button onclick="fetchFirstLine('steam.txt', 'ligne5.html', 'steamClick')">Générer</button>
+
+    <div class="container">
+        <button onclick="showMyIP()">Afficher mon IP</button>
     </div>
-
-
 
     <script>
         function fetchFirstLine(filename, redirectPage, cookieName) {
