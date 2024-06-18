@@ -10,59 +10,53 @@
             color: #ffffff;
             font-family: Arial, sans-serif;
             margin: 0;
-            display: flex;
         }
         .navbar {
             background-color: #333;
-            width: 80px;
-            height: 100vh;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            padding-top: 20px;
-            transition: width 0.3s;
-        }
-        .navbar:hover {
-            width: 200px;
         }
         .navbar a {
-            color: #f2f2f2;
-            text-decoration: none;
-            text-align: center;
-            margin: 10px 0;
-            width: 100%;
-            transition: all 0.3s;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        .navbar a .icon {
+            float: left;
             display: block;
-            margin: 0 auto;
-            width: 40px;
-            height: 40px;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
         }
         .navbar a:hover {
             background-color: #ddd;
             color: black;
         }
-        .navbar a span {
-            display: inline-block;
-            opacity: 0;
-            transition: opacity 0.3s;
-            vertical-align: middle;
-            margin-left: 10px;
+        .discord-link {
+            margin-left: auto; /* Place l'icône Discord à droite de la barre de navigation */
+            padding: 10px;
         }
-        .navbar:hover a span {
-            opacity: 1;
+        .discord-icon {
+            width: 30px; /* Ajustez la taille de l'icône selon vos besoins */
+            height: auto;
+            cursor: pointer;
+        }
+        .nexus-link {
+            padding: 10px;
+        }
+        .nexus-link a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .nexus-link a:hover {
+            color: #ddd;
         }
         .container {
             background-color: #1e1e1e;
-            padding: 10px;
+            padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             text-align: center;
             width: 300px;
-            margin: 50px auto 20px auto;
+            margin: 20px auto;
         }
         .container img {
             width: 100%;
@@ -82,38 +76,19 @@
         .container button:hover {
             background-color: #3700b3;
         }
-        .discord-icon {
-            width: 15px; /* Ajustez la taille de l'icône selon vos besoins */
-            height: auto;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <a href="index.html">
-            <img src="home.jpg" alt="Home" class="icon">
-            <span>Home</span>
-        </a>
-        <a href="avis.html">
-            <img src="avis.png" alt="Avis" class="icon">
-            <span>Avis</span>
-        </a>
-        <a href="leak.html">
-            <img src="leak.png" alt="Leak" class="icon">
-            <span>Leak</span>
-        </a>
-        <a href="notification.html">
-            <img src="notif.png" alt="Notifications" class="icon">
-            <span>Notifications</span>
-        </a>
-        <a href="https://nexus.ai" target="_blank">
-            <img src="nexus.png" alt="Nexus AI" class="icon">
-            <span>Nexus AI</span>
-        </a>
-        <a href="https://discord.gg/VOTRE_CODE" target="_blank">
+        <a href="index.html">Home</a>
+        <a href="avis.html">Avis</a>
+        <a href="leak.html">Leak</a>
+        <a href="notification.html">Notifications</a>
+        <div class="nexus-link">
+            <a href="https://nexus.ai" target="_blank">Nexus AI</a>
+        </div>
+        <a href="https://discord.gg/2HbrWvWCe2" target="_blank" class="discord-link">
             <img src="discord-icon.png" alt="Discord" class="discord-icon">
-            <span>Discord</span>
         </a>
     </div>
 
@@ -183,6 +158,5 @@
     </script>
 </body>
 </html>
-
 
 
